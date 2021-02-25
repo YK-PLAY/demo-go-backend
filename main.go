@@ -1,16 +1,14 @@
 package main
 
 import (
+	"github.com/YK-PLAN/demo-go-backend/api"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+
+	api.ApplyRoutes(r)
 
 	r.Run()
 }
