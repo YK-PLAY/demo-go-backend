@@ -1,6 +1,8 @@
 package auth
 
 import (
+	"encoding/json"
+	"fmt"
 	"io/ioutil"
 
 	"github.com/gin-gonic/gin"
@@ -16,7 +18,10 @@ func register(c *gin.Context) {
 		return
 	}
 
-	print(string(jsonData))
+	var req RegisterReq
+	json.Unmarshal(jsonData, &req)
+
+	fmt.Printf("%+v\n", req)
 
 	c.JSON(200, gin.H{
 		"message": "pong",
