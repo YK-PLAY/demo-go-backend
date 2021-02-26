@@ -1,13 +1,13 @@
 package api
 
 import (
-	apiv1 "github.com/YK-PLAN/demo-go-backend/api/v1"
+	v1 "github.com/YK-PLAN/demo-go-backend/api/v1"
 	"github.com/gin-gonic/gin"
 )
 
 func ApplyRoutes(r *gin.Engine) {
 	api := r.Group("/api")
 	{
-		apiv1.ApplyRoutes(api)
+		v1.ApplyRoutes(api)
 	}
 }

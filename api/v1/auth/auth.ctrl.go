@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	commonapi "github.com/YK-PLAN/demo-go-backend/common/api"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -18,9 +19,7 @@ func register(c *gin.Context) {
 	jsonData, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		//Handle error
-		c.JSON(200, gin.H{
-			"status": 1001,
-		})
+		commonapi.MakeResponse(c, commonapi.INVALID_PARAM, "read json error")
 		return
 	}
 
@@ -30,17 +29,14 @@ func register(c *gin.Context) {
 	fmt.Printf("%+v\n", req)
 
 	if req.Username == "" || req.Uuid == "" {
-		c.JSON(200, gin.H{
-			"status":   1001,
-			"errorMsg": "username or uuid is empty",
-		})
+		commonapi.MakeResponse(c, commonapi.INVALID_PARAM, "username or uuid is empty")
 		return
 	}
 
 	hash, _ := hash(req.Username + req.Uuid)
 
-	c.JSON(200, gin.H{
-		"status":  0,
-		"session": hash,
-	})
+	var res RegisterRes
+	res.SessionKey = hash
+
+	commonapi.MakeResponseWithBody(c, commonapi.OK, "", res)
 }
