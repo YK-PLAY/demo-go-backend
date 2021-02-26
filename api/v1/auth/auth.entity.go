@@ -7,7 +7,18 @@ type RegisterReq struct {
 	Uuid     string `json:"uuid"`
 }
 
-type RegisterRes struct {
+type RegisterAuthReq struct {
+	Username   string `json:"username"`
+	AuthNumber string `json:"authNumber"`
+}
+
+type RegisterAuthRes struct {
 	commonapi.Response
 	SessionKey string `json:"sessionKey"`
+}
+
+type AuthUser struct {
+	Username     string
+	Uuid         string
+	RandomNumber string
 }
