@@ -14,11 +14,12 @@ type RegisterAuthReq struct {
 
 type RegisterAuthRes struct {
 	commonapi.Response
-	SessionKey string `json:"sessionKey"`
+	Token string `json:"token"`
 }
 
 type AuthUser struct {
 	Username     string
 	Uuid         string
 	RandomNumber string
+	UserId       string
 }

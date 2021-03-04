@@ -7,5 +7,6 @@ func ApplyRoutes(r *gin.RouterGroup) {
 	{
 		auth.POST("/register", register)
 		auth.POST("/register/auth", registerAuth)
+		auth.POST("/parse", parseToken)
 	}
 }
