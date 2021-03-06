@@ -11,12 +11,12 @@
             "mode": "debug",
             "program": "${workspaceFolder}/main.go",
             "args": [
-              "-test.run",
+              // "-test.run",
               // test function name
               // * can use reguler expression
               // * NOT include "Test"
               // * the first charactor MUST be small
-              "bubblesort"
+              // "bubblesort"
             ]
           }
     ]
