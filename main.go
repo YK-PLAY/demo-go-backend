@@ -4,6 +4,7 @@ import (
 	"flag"
 
 	"github.com/YK-PLAN/demo-go-backend/api"
+	"github.com/YK-PLAN/demo-go-backend/common/db"
 	"github.com/YK-PLAN/demo-go-backend/config"
 	"github.com/gin-gonic/gin"
 )
@@ -13,6 +14,9 @@ func main() {
 	flag.Parse()
 
 	cnf := config.Load(*env)
+
+	db.InitDBHelper(cnf.Env)
+	db.Inert("users", nil)
 
 	run(&cnf)
 }
