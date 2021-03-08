@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log"
 
 	"github.com/YK-PLAN/demo-go-backend/api"
 	"github.com/YK-PLAN/demo-go-backend/common/db"
@@ -15,8 +16,12 @@ func main() {
 
 	cnf := config.Load(*env)
 
-	db.InitDBHelper(cnf.Env)
-	db.Inert("users", nil)
+	var helper db.MariaDbHelper
+	helper.Init()
+	defer helper.Close()
+
+	r := helper.Select("Select * from users", nil)
+	log.Printf("Select result: %+v\n", r)
 
 	run(&cnf)
 }
