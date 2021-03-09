@@ -63,6 +63,8 @@ func (auth *AuthControllerV1) register(c *gin.Context) {
 
 	user := repository.GetUserByCellphone(auth.db, req.Username)
 	if user == (model.User{}) {
+		repository.SaveUserAuthLog(auth.db, req.Username, randomNumber)
+
 		res := RegisterRes{
 			Action:  "SMS_AUTH",
 			Message: "New user, Please authenticate your id",
@@ -73,6 +75,8 @@ func (auth *AuthControllerV1) register(c *gin.Context) {
 
 	user = repository.GetUserByCellphoneAndUuid(auth.db, req.Username, req.Uuid)
 	if user == (model.User{}) {
+		repository.SaveUserAuthLog(auth.db, req.Username, randomNumber)
+
 		res := RegisterRes{
 			Action:  "SMS_AUTH",
 			Message: "Unauthorized uuid, Please re-authenticate your id",
