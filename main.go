@@ -16,14 +16,6 @@ func main() {
 	flag.Parse()
 
 	cnf := config.Load(*env)
-
-	var helper db.MariaDbHelper
-	helper.Init()
-	defer helper.Close()
-
-	r := helper.Select("Select * from users", nil)
-	log.Printf("Select result: %+v\n", r)
-
 	run(&cnf)
 }
 
