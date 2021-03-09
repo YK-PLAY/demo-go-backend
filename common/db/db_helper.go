@@ -5,6 +5,7 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func NewMysqlDB() *gorm.DB {
@@ -17,7 +18,7 @@ func NewMysqlDB() *gorm.DB {
 		DontSupportRenameColumn:   true,  // `change` when rename column, rename column not supported before MySQL 8, MariaDB
 		SkipInitializeWithVersion: false, // auto configure based on currently MySQL version
 	}
-	db, err := gorm.Open(mysql.New(conf), &gorm.Config{})
+	db, err := gorm.Open(mysql.New(conf), &gorm.Config{Logger: logger.Default.LogMode(logger.Info)})
 	if err != nil {
 		panic(err)
 	}

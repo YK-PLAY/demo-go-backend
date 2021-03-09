@@ -5,10 +5,11 @@ import (
 )
 
 type User struct {
-	Seq     int64 `gorm:"primaryKey"`
-	Idno    string
-	RegYmdt sql.NullTime
-	ModYmdt sql.NullTime
+	Seq       int64 `gorm:"primaryKey"`
+	Idno      string
+	Cellphone string
+	RegYmdt   sql.NullTime
+	ModYmdt   sql.NullTime
 }
 
 func (User) TableName() string {

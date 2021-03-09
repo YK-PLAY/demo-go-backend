@@ -15,6 +15,6 @@ func (v1 *ApiV1) ApplyRoutes(r *gin.RouterGroup) {
 	{
 		auth := NewAuthControllerV1(v1.db)
 		v1.auth = auth
-		v1Group.POST("/register", auth.register)
+		v1Group.POST("/auth/register", auth.register)
 	}
 }

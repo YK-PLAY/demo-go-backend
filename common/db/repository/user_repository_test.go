@@ -20,3 +20,15 @@ func TestGetUserBySeq(t *testing.T) {
 
 	assert.Equal(t, seq, user.Seq)
 }
+
+func TestGetUserByCellphoneAndUuid(t *testing.T) {
+	db := db.NewMysqlDB()
+
+	var cellphone string = "01012345678"
+	user := GetUserByCellphoneAndUuid(db, cellphone, "test-uuid")
+	if user == (model.User{}) {
+		t.Skip("Skip repository test")
+	}
+
+	assert.Equal(t, cellphone, user.Cellphone)
+}
